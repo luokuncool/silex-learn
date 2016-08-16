@@ -134,22 +134,12 @@
         "type": "container",
         "value": [
             {
-                "name": "tm39test",
-                "type": "class",
-                "value": "Doctrine\\DBAL\\Connection"
-            },
-            {
-                "name": "easy-workflow",
+                "name": "default",
                 "type": "class",
                 "value": "Doctrine\\DBAL\\Connection"
             },
             {
                 "name": "sqlsrv",
-                "type": "class",
-                "value": "Doctrine\\DBAL\\Connection"
-            },
-            {
-                "name": "sqlite",
                 "type": "class",
                 "value": "Doctrine\\DBAL\\Connection"
             }
@@ -160,22 +150,12 @@
         "type": "container",
         "value": [
             {
-                "name": "tm39test",
-                "type": "class",
-                "value": "Doctrine\\DBAL\\Configuration"
-            },
-            {
-                "name": "easy-workflow",
+                "name": "default",
                 "type": "class",
                 "value": "Doctrine\\DBAL\\Configuration"
             },
             {
                 "name": "sqlsrv",
-                "type": "class",
-                "value": "Doctrine\\DBAL\\Configuration"
-            },
-            {
-                "name": "sqlite",
                 "type": "class",
                 "value": "Doctrine\\DBAL\\Configuration"
             }
@@ -186,22 +166,12 @@
         "type": "container",
         "value": [
             {
-                "name": "tm39test",
-                "type": "class",
-                "value": "Doctrine\\Common\\EventManager"
-            },
-            {
-                "name": "easy-workflow",
+                "name": "default",
                 "type": "class",
                 "value": "Doctrine\\Common\\EventManager"
             },
             {
                 "name": "sqlsrv",
-                "type": "class",
-                "value": "Doctrine\\Common\\EventManager"
-            },
-            {
-                "name": "sqlite",
                 "type": "class",
                 "value": "Doctrine\\Common\\EventManager"
             }
@@ -365,6 +335,6 @@
     {
         "name": "dbs.default",
         "type": "string",
-        "value": "tm39test"
+        "value": "default"
     }
 ]

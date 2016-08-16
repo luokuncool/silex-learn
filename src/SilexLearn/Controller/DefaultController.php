@@ -23,7 +23,7 @@ class DefaultController implements ControllerProviderInterface
     {
         $query  = $app['db']->createQueryBuilder()
             ->select('*')
-            ->from('adm_users')
+            ->from('groups')
             ->setMaxResults(100);
         $groups = $app['db']->executeQuery($query)->fetchAll();
         return $app['twig']->render('Default/index.html.twig', ['groups' => $groups]);
