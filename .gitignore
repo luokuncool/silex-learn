@@ -1,0 +1,4 @@
+.idea/
+var/logs
+!/var/logs/.gitkeep
+vendor/

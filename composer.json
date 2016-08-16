@@ -1,0 +1,36 @@
+{
+    "name": "silex-learn/silex-learn",
+    "description": "silex learn project",
+    "authors": [
+        {
+            "name": "quentin.luo",
+            "email": "1131915347@qq.com"
+        }
+    ],
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "http://packagist.phpcomposer.com"
+        }
+    },
+    "config": {
+        "secure-http": false
+    },
+    "autoload": {
+        "psr-4": {
+            "SilexLearn\\" : "src/SilexLearn"
+        }
+    },
+    "require": {
+        "silex/silex": "^2.0",
+        "doctrine/dbal": "~2.2",
+        "symfony/var-dumper": "^3.1",
+        "gregwar/rst": "^1.0",
+        "monolog/monolog": "^1.20",
+        "twig/twig": "^1.24",
+        "phpexcel/phpexcel": "^1.7",
+        "sorien/silex-pimple-dumper": "~2.0",
+        "symfony/twig-bridge": "^3.1",
+        "knplabs/console-service-provider": "^2.0"
+    }
+}
