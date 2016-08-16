@@ -30,8 +30,8 @@ class DemoCommand extends Command
         $i     = 1;
         $total = 1000;
         while ($i++ < $total) {
-            echo "\r".time();
-            sleep(1);
+            echo "\r$i/$total";
+            usleep(50000);
         }
     }
 }
