@@ -3,3 +3,4 @@ var/logs
 !/var/logs/.gitkeep
 vendor/
 /pimple.json
+/composer.lock
