@@ -9,17 +9,9 @@ class Configs
             'default' => array(
                 'driver'   => 'pdo_mysql',
                 'host'     => 'localhost',
-                'dbname'   => 'easy-workflow',
+                'dbname'   => 'silex-learn',
                 'user'     => 'root',
                 'password' => 'root',
-                'charset'  => 'utf8mb4',
-            ),
-            'sqlsrv'        => array(
-                'driver'   => 'pdo_sqlsrv',
-                'host'     => 'localhost',
-                'dbname'   => 'easy-workflow',
-                'user'     => 'sa',
-                'password' => '123456',
                 'charset'  => 'utf8mb4',
             )
         ),
