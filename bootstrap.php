@@ -52,9 +52,7 @@ $app->register(
 //记录sql日志
 if ($app['debug']) {
     $logger = new DebugStack();
-    /** @var Doctrine\DBAL\Configuration $configuration */
-    $configuration = &$app['db.config'];
-    $configuration->setSQLLogger($logger);
+    $app['db.config']->setSQLLogger($logger);
     $app->error(
         function (Exception $e, $code) use ($app, $logger) {
             if ($e instanceof PDOException and count($logger->queries)) {
