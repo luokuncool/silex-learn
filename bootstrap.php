@@ -17,40 +17,7 @@ $app['debug'] = true;
 
 $app->register(
     new DoctrineServiceProvider(),
-    array(
-        'dbs.options' => array(
-            'tm39test'      => array(
-                'driver'   => 'pdo_mysql',
-                'host'     => 'localhost',
-                'dbname'   => 'tm39test',
-                'user'     => 'root',
-                'password' => 'root',
-                'charset'  => 'utf8mb4',
-            ),
-            'easy-workflow' => array(
-                'driver'   => 'pdo_mysql',
-                'host'     => 'localhost',
-                'dbname'   => 'easy-workflow',
-                'user'     => 'root',
-                'password' => 'root',
-                'charset'  => 'utf8mb4',
-            ),
-            'sqlsrv'        => array(
-                'driver'   => 'pdo_sqlsrv',
-                'host'     => 'localhost',
-                'dbname'   => 'easy-workflow',
-                'user'     => 'sa',
-                'password' => '123456',
-                'charset'  => 'utf8mb4',
-            ),
-            'sqlite'        => array(
-                'driver'  => 'pdo_sqlite',
-                'path'    => 'D:\www\TrademarkManager\branches\3.3.0.0\vendor\db.sqlite',
-                'dbname'  => 'db.sqlite',
-                'charset' => 'utf8mb4',
-            ),
-        ),
-    )
+    Configs::$dbs
 );
 $app->register(
     new MonologServiceProvider(),
