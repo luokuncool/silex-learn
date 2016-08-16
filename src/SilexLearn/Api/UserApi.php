@@ -18,8 +18,7 @@ class UserApi implements ControllerProviderInterface
     public function createAction()
     {
         //todo
-        $response = new JsonResponse();
-        $response->setContent(array());
+        $response = new JsonResponse(array('status' => 0));
         return $response;
     }
 }
