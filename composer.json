@@ -32,6 +32,7 @@
         "sorien/silex-pimple-dumper": "~2.0",
         "symfony/twig-bridge": "^3.1",
         "knplabs/console-service-provider": "^2.0",
-        "silex/web-profiler": "^2.0"
+        "silex/web-profiler": "^2.0",
+        "sorien/silex-dbal-profiler": "~2.0"
     }
 }
