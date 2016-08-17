@@ -1,6 +1,8 @@
 .idea/
 var/logs
 !/var/logs/.gitkeep
+var/cache
+!var/cache/.gitkeep
 vendor/
 /pimple.json
 /composer.lock
