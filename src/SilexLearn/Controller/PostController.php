@@ -18,7 +18,12 @@ class PostController implements ControllerProviderInterface
 
     public function indexAction(Application $app)
     {
-        return $app['twig']->render('Post/index.html.twig');
+        $query  = $app['db']->createQueryBuilder()
+            ->select('*')
+            ->from('post')
+            ->setMaxResults(100);
+        $posts = $app['db']->executeQuery($query)->fetchAll();
+        return $app['twig']->render('Post/index.html.twig', ['posts' => $posts]);
     }
 
     public function createAction(Application $app)
