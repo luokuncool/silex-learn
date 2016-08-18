@@ -7,6 +7,7 @@ use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\MonologServiceProvider;
 use Silex\Provider\TwigServiceProvider;
 use SilexLearn\Config\Configs;
+use SilexLearn\Middleware\AuthApiMiddleware;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -49,6 +50,7 @@ $app->register(
     )
 );
 
+$app->before(new AuthApiMiddleware());
 //记录sql日志
 if ($app['debug']) {
     $logger = new DebugStack();

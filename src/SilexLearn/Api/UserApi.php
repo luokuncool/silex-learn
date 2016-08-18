@@ -5,9 +5,8 @@ use Silex\Api\ControllerProviderInterface;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class UserApi implements ControllerProviderInterface
+class UserApi implements ControllerProviderInterface, AuthInterface
 {
-
     public function connect(Application $app)
     {
         $controllers = $app['controllers_factory'];
