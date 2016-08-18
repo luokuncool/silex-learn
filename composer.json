@@ -28,7 +28,6 @@
         "gregwar/rst": "^1.0",
         "monolog/monolog": "^1.20",
         "twig/twig": "^1.24",
-        "phpexcel/phpexcel": "^1.7",
         "sorien/silex-pimple-dumper": "~2.0",
         "symfony/twig-bridge": "^3.1",
         "knplabs/console-service-provider": "^2.0",
