@@ -2,6 +2,7 @@
 namespace SilexLearn\Api;
 
 use EasyWeChat\Message\Image;
+use EasyWeChat\Message\News;
 use Silex\Api\ControllerProviderInterface;
 use Silex\Application;
 use Silex\ControllerCollection;
@@ -55,13 +56,13 @@ class WeChatApi implements ControllerProviderInterface
                 # 事件消息...
                 break;
             case 'text':
-                return "您好！欢迎关注我!";
+                return $this->handlerTextMsg($message->Content);
                 break;
             case 'image':
-                $app      = new WeChatApplication($this->options);
-                $material = $app->material_temporary;
-                $res = $material->uploadImage(__DIR__.'/../../../web/images/symfony.jpg');
-                $image = new Image();
+                $app             = new WeChatApplication($this->options);
+                $material        = $app->material_temporary;
+                $res             = $material->uploadImage(__DIR__ . '/../../../web/images/symfony.jpg');
+                $image           = new Image();
                 $image->media_id = $res->media_id;
                 return $image;
                 # 图片消息...
@@ -89,8 +90,21 @@ class WeChatApi implements ControllerProviderInterface
     {
         $app      = new WeChatApplication($this->options);
         $material = $app->material_temporary;
-        $res = $material->uploadImage(__DIR__.'/../../../web/images/symfony.jpg');
+        $res      = $material->uploadImage(__DIR__ . '/../../../web/images/symfony.jpg');
         $res->media_id;
         dump($res);
+    }
+
+    private function handlerTextMsg($content)
+    {
+        if ($content == '图文') {
+            $news = new News();
+            $news->title = '图文标题';
+            $news->description = '图文主题内容';
+            $news->url = 'http://www.baidu.com/';
+            $news->image = 'http://silex-learn.luokuncool.com/images/symfony.jpg';
+            return $news;
+        }
+        return '你好, 这个是默认消息！';
     }
 }
