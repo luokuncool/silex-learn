@@ -8,6 +8,21 @@ use EasyWeChat\Foundation\Application as WeChatApplication;
 
 class WeChatApi implements ControllerProviderInterface
 {
+    private $options = array(
+        /**
+         * Debug 模式，bool 值：true/false
+         *
+         * 当值为 false 时，所有的日志都不会记录
+         */
+        'debug'  => true,
+        /**
+         * 账号基本信息，请从微信公众平台/开放平台获取
+         */
+        'app_id' => 'wx0243cccf60129301',
+        'secret' => '57df18c794809b8424f24344d76097fb',
+        'token'  => 'weixin',
+        //'aes_key' => '',
+    );
 
     /**
      * Returns routes to connect to the given application.
@@ -20,27 +35,13 @@ class WeChatApi implements ControllerProviderInterface
     {
         $controllers = $app['controllers_factory'];
         $controllers->match('/index', array($this, 'indexAction'));
+        $controllers->match('/material', array($this, 'materialAction'));
         return $controllers;
     }
 
     public function indexAction()
     {
-        $options   = array(
-            /**
-             * Debug 模式，bool 值：true/false
-             *
-             * 当值为 false 时，所有的日志都不会记录
-             */
-            'debug'  => true,
-            /**
-             * 账号基本信息，请从微信公众平台/开放平台获取
-             */
-            'app_id' => 'wx0243cccf60129301',
-            'secret' => '57df18c794809b8424f24344d76097fb',
-            'token'  => 'weixin',
-            //'aes_key' => '',
-        );
-        $weChatApp = new WeChatApplication($options);
+        $weChatApp = new WeChatApplication($this->options);
         $server    = $weChatApp->server;
         $server->setMessageHandler(array($this, 'messageHandler'));
         return $server->serve();
@@ -75,5 +76,13 @@ class WeChatApi implements ControllerProviderInterface
                 return "您好！";
                 break;
         }
+    }
+
+    public function materialAction()
+    {
+        $app      = new WeChatApplication($this->options);
+        $material = $app->material_temporary;
+        $res = $material->uploadImage(__DIR__.'/../../../web/images/symfony.jpg');
+        dump($res);
     }
 }
