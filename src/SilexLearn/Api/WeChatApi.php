@@ -40,7 +40,7 @@ class WeChatApi implements ControllerProviderInterface
         $this->app   = $app;
         $controllers = $app['controllers_factory'];
         $controllers->match('/index', array($this, 'indexAction'));
-        $controllers->match('/material', array($this, 'materialAction'));
+        $controllers->match('/broadcast', array($this, 'broadcastAction'));
         return $controllers;
     }
 
@@ -97,6 +97,13 @@ class WeChatApi implements ControllerProviderInterface
         $res      = $material->uploadImage(__DIR__ . '/../../../web/images/symfony.jpg');
         $res->media_id;
         dump($res);
+    }
+
+    public function broadcastAction()
+    {
+        $app       = new WeChatApplication($this->options);
+        $broadcast = $app->broadcast;
+        $broadcast->sendText("大家好！这是一个群发的广播信息。");
     }
 
     private function handlerTextMsg($content)
