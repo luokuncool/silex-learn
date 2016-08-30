@@ -10,6 +10,8 @@ use EasyWeChat\Foundation\Application as WeChatApplication;
 
 class WeChatApi implements ControllerProviderInterface
 {
+    /** @var Application $app */
+    private $app = null;
     private $options = array(
         /**
          * Debug 模式，bool 值：true/false
@@ -35,6 +37,7 @@ class WeChatApi implements ControllerProviderInterface
      */
     public function connect(Application $app)
     {
+        $this->app   = $app;
         $controllers = $app['controllers_factory'];
         $controllers->match('/index', array($this, 'indexAction'));
         $controllers->match('/material', array($this, 'materialAction'));
@@ -51,6 +54,7 @@ class WeChatApi implements ControllerProviderInterface
 
     public function messageHandler($message)
     {
+        $this->app['monolog']->addDebug('message', $message);
         switch ($message->MsgType) {
             case 'event':
                 # 事件消息...
@@ -98,11 +102,11 @@ class WeChatApi implements ControllerProviderInterface
     private function handlerTextMsg($content)
     {
         if ($content == '图文') {
-            $news = new News();
-            $news->title = '图文标题';
+            $news              = new News();
+            $news->title       = '图文标题';
             $news->description = '图文主题内容';
-            $news->url = 'http://www.baidu.com/';
-            $news->image = 'http://silex-learn.luokuncool.com/images/symfony.jpg';
+            $news->url         = 'http://www.baidu.com/';
+            $news->image       = 'http://silex-learn.luokuncool.com/images/symfony.jpg';
             return $news;
         }
         return '你好, 这个是默认消息！';
