@@ -54,7 +54,7 @@ class WeChatApi implements ControllerProviderInterface
 
     public function messageHandler($message)
     {
-        $this->app['monolog']->addDebug('message', $message);
+        $this->app['monolog']->addDebug(print_r($message, true));
         switch ($message->MsgType) {
             case 'event':
                 # 事件消息...
