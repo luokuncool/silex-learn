@@ -25,10 +25,6 @@ class WeChatApi implements ControllerProviderInterface
 
     public function indexAction()
     {
-        if ($_GET['echostr']) {
-            return $_GET['echostr'];
-        }
-
         $options   = array(
             /**
              * Debug 模式，bool 值：true/false
