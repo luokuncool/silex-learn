@@ -28,6 +28,9 @@ class WeChatApi implements ControllerProviderInterface
         //'aes_key' => '',
     );
 
+    /** @var WeChatApplication $wechat */
+    private $wechat = null;
+
     /**
      * Returns routes to connect to the given application.
      *
@@ -37,8 +40,9 @@ class WeChatApi implements ControllerProviderInterface
      */
     public function connect(Application $app)
     {
-        $this->app   = $app;
-        $controllers = $app['controllers_factory'];
+        $this->wechat = new WeChatApplication($this->options);
+        $this->app    = $app;
+        $controllers  = $app['controllers_factory'];
         $controllers->match('/index', array($this, 'indexAction'));
         $controllers->match('/broadcast', array($this, 'broadcastAction'));
         return $controllers;
@@ -46,8 +50,7 @@ class WeChatApi implements ControllerProviderInterface
 
     public function indexAction()
     {
-        $weChatApp = new WeChatApplication($this->options);
-        $server    = $weChatApp->server;
+        $server = $this->wechat->server;
         $server->setMessageHandler(array($this, 'messageHandler'));
         return $server->serve();
     }
@@ -92,8 +95,7 @@ class WeChatApi implements ControllerProviderInterface
 
     public function materialAction()
     {
-        $app      = new WeChatApplication($this->options);
-        $material = $app->material_temporary;
+        $material = $this->wechat->material_temporary;
         $res      = $material->uploadImage(__DIR__ . '/../../../web/images/symfony.jpg');
         $res->media_id;
         dump($res);
@@ -101,21 +103,15 @@ class WeChatApi implements ControllerProviderInterface
 
     public function broadcastAction()
     {
-        $app       = new WeChatApplication($this->options);
-        $broadcast = $app->broadcast;
+        $broadcast = $this->wechat->broadcast;
         $broadcast->sendText("大家好！这是一个群发的广播信息。");
     }
 
     private function handlerTextMsg($content)
     {
-        if ($content == '图文') {
-            $news              = new News();
-            $news->title       = '图文标题';
-            $news->description = '图文主题内容';
-            $news->url         = 'http://www.baidu.com/';
-            $news->image       = 'http://silex-learn.luokuncool.com/images/symfony.jpg';
-            return $news;
-        }
+        $semantic = $this->wechat->semantic;
+        $res = $semantic->query($content, 'flight,hotel,restaurant,map,nearby,coupon');
+        return var_export($res, true);
         return '你好, 这个是默认消息！';
     }
 }
