@@ -110,7 +110,7 @@ class WeChatApi implements ControllerProviderInterface
     private function handlerTextMsg($content)
     {
         $semantic = $this->wechat->semantic;
-        $res = $semantic->query($content, 'flight,hotel,restaurant,map,nearby,coupon');
+        $res = $semantic->query($content, 'flight,hotel', array('city' => '北京', 'uid' => '123456'));
         return var_export($res, true);
         return '你好, 这个是默认消息！';
     }
