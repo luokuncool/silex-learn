@@ -189,8 +189,6 @@ class WeChatApi implements ControllerProviderInterface
 
     private function handEventMsg($message)
     {
-        if ($message->Event == 'click') {
-            return $message->EventKey;
-        }
+        return $message->EventKey;
     }
 }
