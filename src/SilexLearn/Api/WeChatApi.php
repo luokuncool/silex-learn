@@ -52,7 +52,9 @@ class WeChatApi implements ControllerProviderInterface
     {
         $server = $this->wechat->server;
         $server->setMessageHandler(array($this, 'messageHandler'));
-        return $server->serve();
+        $response = $server->serve();
+        $response->headers->set('Content-Type', 'text/xml; charset=UTF-8');
+        return $response;
     }
 
     public function messageHandler($message)
