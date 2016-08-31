@@ -60,6 +60,7 @@ class WeChatApi implements ControllerProviderInterface
         $this->app['monolog']->addDebug(print_r($message, true));
         switch ($message->MsgType) {
             case 'event':
+                return $this->handEventMsg($message);
                 # 事件消息...
                 break;
             case 'text':
@@ -109,9 +110,87 @@ class WeChatApi implements ControllerProviderInterface
 
     private function handlerTextMsg($content)
     {
+        if ($content == '设置菜单') {
+            $setMenu = array(
+                array(
+                    'name'       => '扫码',
+                    'sub_button' =>
+                        array(
+                            array(
+                                'type'       => 'scancode_waitmsg',
+                                'name'       => '扫码带提示',
+                                'key'        => 'rselfmenu_0_0',
+                                'sub_button' =>
+                                    array(),
+                            ),
+                            array(
+                                'type'       => 'scancode_push',
+                                'name'       => '扫码推事件',
+                                'key'        => 'rselfmenu_0_1',
+                                'sub_button' =>
+                                    array(),
+                            ),
+                        ),
+                ),
+                /*array(
+                    'name'       => '发图',
+                    'sub_button' =>
+                        array(
+                            array(
+                                'type'       => 'pic_sysphoto',
+                                'name'       => '系统拍照发图',
+                                'key'        => 'rselfmenu_1_0',
+                                'sub_button' =>
+                                    array(),
+                            ),
+                            array(
+                                'type'       => 'pic_photo_or_album',
+                                'name'       => '拍照或者相册发图',
+                                'key'        => 'rselfmenu_1_1',
+                                'sub_button' =>
+                                    array(),
+                            ),
+                            array(
+                                'type'       => 'pic_weixin',
+                                'name'       => '微信相册发图',
+                                'key'        => 'rselfmenu_1_2',
+                                'sub_button' =>
+                                    array(),
+                            ),
+                        ),
+                ),*/
+                array(
+                    'type'       => 'location_select',
+                    'name'       => '发送位置',
+                    'key'        => 'rselfmenu_2_0',
+                    'sub_button' =>
+                        array(),
+                ),
+                array(
+                    'type'       => 'click',
+                    'name'       => '点我',
+                    'key'        => 'my_click1',
+                    'sub_button' =>
+                        array(),
+                )
+            );
+            $this->wechat->menu->add($setMenu);
+        }
+
+        if ($content == '菜单') {
+            $menuAll = $this->wechat->menu->all();
+            return var_export($menuAll->all(), true);
+        }
         $semantic = $this->wechat->semantic;
-        $res = $semantic->query($content, 'flight,hotel', array('city' => '北京', 'uid' => '123456'));
+        $res      = $semantic->query($content, 'flight,hotel', array('city' => '北京', 'uid' => '123456'));
         return var_export($res, true);
         return '你好, 这个是默认消息！';
+    }
+
+    private function handEventMsg($message)
+    {
+        if ($message->Event == 'click') {
+            return $message->EventKey;
+        }
     }
 }
