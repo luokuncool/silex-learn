@@ -43,7 +43,8 @@ class DefaultController implements ControllerProviderInterface
         dump($json);
 
         $userInfo = file_get_contents("https://api.weixin.qq.com/sns/userinfo?access_token={$json['access_token']}&openid=wx0243cccf60129301&lang=zh_CN");
+        $userInfo = json_decode($userInfo, true);
         dump($userInfo);
-        return '';
+        return "<img src='{$userInfo['headimgurl']}' />";
     }
 }
