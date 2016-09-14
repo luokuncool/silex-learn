@@ -3,6 +3,7 @@ namespace SilexLearn\Controller;
 
 use Silex\Api\ControllerProviderInterface;
 use Silex\Application;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController implements ControllerProviderInterface
 {
@@ -34,8 +35,12 @@ class DefaultController implements ControllerProviderInterface
         return $app['twig']->render('Default/read.html.twig', ['groups' => $groups]);
     }
 
-    public function authCallbackAction()
+    public function authCallbackAction(Request $request)
     {
-        return '成功啦';
+        $code = $request->get('code');
+        //https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx0243cccf60129301&secret=57df18c794809b8424f24344d76097fb&code=CODE&grant_type=authorization_code
+        $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx0243cccf60129301&secret=57df18c794809b8424f24344d76097fb&code={$code}&grant_type=authorization_code";
+        $get = new \GuzzleHttp\Psr7\Request('get', $url);
+        return $get->getBody();
     }
 }
