@@ -38,6 +38,7 @@ class DefaultController implements ControllerProviderInterface
     public function authCallbackAction(Request $request)
     {
         $code = $request->get('code');
+        return $code.'aaaa';
         //https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx0243cccf60129301&secret=57df18c794809b8424f24344d76097fb&code=CODE&grant_type=authorization_code
         $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx0243cccf60129301&secret=57df18c794809b8424f24344d76097fb&code={$code}&grant_type=authorization_code";
         return print_r(file_get_contents($url));
