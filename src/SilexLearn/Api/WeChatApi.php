@@ -26,6 +26,7 @@ class WeChatApi implements ControllerProviderInterface
         'secret' => '57df18c794809b8424f24344d76097fb',
         'token'  => 'weixin',
         //'aes_key' => '',
+        //https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx0243cccf60129301&redirect_uri=http%3A%2F%2Fsilex-learn.luokuncool.com%2Fauth_callback&response_type=code&scope=SCOPE&state=STATE#wechat_redirect
     );
 
     /** @var WeChatApplication $wechat */
@@ -169,8 +170,9 @@ class WeChatApi implements ControllerProviderInterface
                         array(),
                 ),
                 array(
-                    'type'       => 'click',
+                    'type'       => 'view',
                     'name'       => '点我',
+                    'url'        => 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx0243cccf60129301&redirect_uri=http%3A%2F%2Fsilex-learn.luokuncool.com%2Fauth_callback&response_type=code&scope=SCOPE&state=STATE#wechat_redirect',
                     'key'        => 'my_click1',
                     'sub_button' =>
                         array(),
