@@ -179,6 +179,8 @@ class WeChatApi implements ControllerProviderInterface
                 )
             );
             $this->wechat->menu->add($setMenu);
+            $menuAll = $this->wechat->menu->all();
+            return var_export($menuAll->all(), true);
         }
 
         if ($content == '菜单') {

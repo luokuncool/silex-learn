@@ -11,6 +11,7 @@ class DefaultController implements ControllerProviderInterface
         $controllers = $app['controllers_factory'];
         $controllers->get('/', array($this, 'indexAction'));
         $controllers->get('/read', array($this, 'readAction'));
+        $controllers->get('/auth_callback', array($this, 'authCallbackAction'));
         return $controllers;
     }
 
@@ -31,5 +32,10 @@ class DefaultController implements ControllerProviderInterface
             ->setMaxResults(100);
         $groups = $app['db']->executeQuery($query)->fetchAll();
         return $app['twig']->render('Default/read.html.twig', ['groups' => $groups]);
+    }
+
+    public function authCallbackAction()
+    {
+        return '成功啦';
     }
 }
