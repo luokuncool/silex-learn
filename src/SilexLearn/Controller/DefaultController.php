@@ -39,6 +39,7 @@ class DefaultController implements ControllerProviderInterface
     {
         $code = $request->get('code');
         $json = file_get_contents("https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx0243cccf60129301&secret=57df18c794809b8424f24344d76097fb&code={$code}&grant_type=authorization_code");
-        return '</pre>'.print_r(json_decode($json), true).'</pre>';
+        dump(json_decode($json));
+        return '';
     }
 }
