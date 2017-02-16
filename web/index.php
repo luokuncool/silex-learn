@@ -1,9 +1,9 @@
 <?php
 
-use SilexLearn\Api\UserApi;
-use SilexLearn\Api\WeChatApi;
-use SilexLearn\Controller\DefaultController;
-use SilexLearn\Controller\PostController;
+use Acme\Api\UserApi;
+use Acme\Api\WeChatApi;
+use Acme\Controller\DefaultController;
+use Acme\Controller\PostController;
 
 $app = require __DIR__ . '/../bootstrap.php';
 $app->mount('/', new DefaultController());

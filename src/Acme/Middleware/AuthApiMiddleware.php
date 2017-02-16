@@ -1,8 +1,8 @@
 <?php
-namespace SilexLearn\Middleware;
+namespace Acme\Middleware;
 
 use Silex\Application;
-use SilexLearn\Api\AuthInterface;
+use Acme\Api\AuthInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 class AuthApiMiddleware

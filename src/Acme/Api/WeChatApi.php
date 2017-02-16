@@ -1,5 +1,5 @@
 <?php
-namespace SilexLearn\Api;
+namespace Acme\Api;
 
 use EasyWeChat\Message\Image;
 use EasyWeChat\Message\News;

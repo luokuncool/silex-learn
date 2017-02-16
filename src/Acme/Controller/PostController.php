@@ -1,5 +1,5 @@
 <?php
-namespace SilexLearn\Controller;
+namespace Acme\Controller;
 
 use Silex\Api\ControllerProviderInterface;
 use Silex\Application;

@@ -1,5 +1,5 @@
 <?php
-namespace SilexLearn\Api;
+namespace Acme\Api;
 
 interface AuthInterface
 {

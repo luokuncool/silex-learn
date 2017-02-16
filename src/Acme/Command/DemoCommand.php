@@ -6,7 +6,7 @@
  * @since      2016/8/16 16:56
  */
 
-namespace SilexLearn\Command;
+namespace Acme\Command;
 
 
 use Symfony\Component\Console\Command\Command;

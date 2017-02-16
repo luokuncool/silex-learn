@@ -1,6 +1,7 @@
 #!/usr/bin/env php
 <?php
 
+use Acme\Provider\MigrationProvider;
 use Doctrine\DBAL\DriverManager;
 use Silex\Application;
 use Symfony\Component\Console\Input\InputInterface;
@@ -10,6 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 set_time_limit(0);
 /** @var Application $app */
 $app = require_once __DIR__ . '/../bootstrap.php';
+$app->register(new MigrationProvider());
 
 $console = $app['console'];
 
@@ -136,29 +138,6 @@ EOT
                 $output->writeln('<error>All data will be lost!</error>');
 
                 return 2;
-            }
-        }
-    );
-
-$console
-    ->register('db:schema:show')
-    ->setDescription('Output schema declaration')
-    ->setCode(
-        function (InputInterface $input, OutputInterface $output) use ($app) {
-            foreach (\SilexLearn\Config\Schema::get()->toSql($app['db']->getDatabasePlatform()) as $sql) {
-                $output->writeln($sql . ';');
-            }
-        }
-    );
-
-
-$console
-    ->register('db:schema:create')
-    ->setDescription('Create schema')
-    ->setCode(
-        function (InputInterface $input, OutputInterface $output) use ($app) {
-            foreach (\SilexLearn\Config\Schema::get()->toSql($app['db']->getDatabasePlatform()) as $sql) {
-                $app['db']->exec($sql);
             }
         }
     );

@@ -1,5 +1,5 @@
 <?php
-namespace SilexLearn\Config;
+namespace Acme\Config;
 
 use Doctrine\DBAL\Schema\Schema as DoctrineSchema;
 

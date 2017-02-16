@@ -1,5 +1,5 @@
 <?php
-namespace SilexLearn;
+namespace Acme;
 
 use Silex\Application as SilexApplication;
 

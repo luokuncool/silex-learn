@@ -1,6 +1,6 @@
 <?php
 
-namespace SilexLearn\Twig;
+namespace Acme\Twig;
 
 use Twig_Extension;
 use Twig_SimpleFilter;

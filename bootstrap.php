@@ -6,8 +6,8 @@ use Silex\Application;
 use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\MonologServiceProvider;
 use Silex\Provider\TwigServiceProvider;
-use SilexLearn\Config\Configs;
-use SilexLearn\Middleware\AuthApiMiddleware;
+use Acme\Config\Configs;
+use Acme\Middleware\AuthApiMiddleware;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -36,7 +36,7 @@ $app->register(
 $app->extend(
     "twig",
     function (\Twig_Environment $twig, Silex\Application $app) {
-        $twig->addExtension(new \SilexLearn\Twig\MyExtension($app));
+        $twig->addExtension(new \Acme\Twig\MyExtension($app));
         return $twig;
     }
 );
@@ -44,7 +44,7 @@ $app->extend(
 $app->register(
     new ConsoleServiceProvider(),
     array(
-        'console.name'              => 'SilexLearn',
+        'console.name'              => 'Acme',
         'console.version'           => '1.0.0',
         'console.project_directory' => __DIR__ . '/..'
     )
