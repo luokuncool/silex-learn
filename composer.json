@@ -21,6 +21,11 @@
             "Acme\\" : "src/Acme"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "": "tests"
+        }
+    },
     "require": {
         "silex/silex": "^2.0",
         "doctrine/dbal": "~2.2",
