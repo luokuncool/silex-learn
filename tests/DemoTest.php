@@ -10,8 +10,7 @@ class DemoTest extends \PHPUnit\Framework\TestCase
     /** @test */
     public function redis()
     {
-        $redis = new Redis();
-        $redis->connect('localhost');
+        $redis = new \Predis\Client();
         $redis->set('foo', 'bar');
         $this->assertEquals('bar', $redis->get('foo'));
     }
